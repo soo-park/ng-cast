@@ -1,4 +1,17 @@
 angular.module('video-player')
-.service('youTube', function(){
-  // TODO
+.controller('youtubeController', function() {
+  console.log('yaya');
+})
+
+.component('youtube', {
+  controller: 'youtubeController'
+})
+
+.service('youTube', function($http) {
+  this.getYoutubeVideo = function(name) {
+    return $http({
+      method: 'GET',
+      url: ''
+    });
+  };
 });
