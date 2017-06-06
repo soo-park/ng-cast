@@ -1,8 +1,7 @@
 angular.module('video-player')
 .component('videoPlayer', {
-  binding: {
-    data: '<'
+  bindings: {
+    videoData: '<'
   },
-
   templateUrl: 'src/templates/videoPlayer.html'
 });
