@@ -1,17 +1,28 @@
 angular.module('video-player')
-.controller('youtubeController', function() {
-  console.log('yaya');
+
+.controller('youtubeController', function($scope, youTubeVideos) {
+  $scope.youTubeVideos = youTubeVideos;
 })
 
-.component('youtube', {
-  controller: 'youtubeController'
-})
-
-.service('youTube', function($http) {
-  this.getYoutubeVideo = function(name) {
+.service('youTubeVideos', ['$http', function($http) {
+  this.getYoutubeVideos = function(query, callback) {
     return $http({
       method: 'GET',
-      url: ''
+      url: 'https://www.googleapis.com/youtube/v3/search',
+      params: {
+        part: 'snippet',
+        key: window.YOUTUBE_API_KEY,
+        q: query,
+        maxResults: 5,
+        type: 'video',
+        videoEmbeddable: 'true'
+      }
+    })
+    .then(function(data) {
+      callback(data);
+    })
+    .catch(function(error) {
+      console.log(error);
     });
   };
-});
+}]);
