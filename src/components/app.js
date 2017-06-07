@@ -1,6 +1,6 @@
 angular.module('video-player')
 
-.controller('videoController', function(youTubeVideos) {
+.controller('videoController', function($scope, youTubeVideos) {
   this.videos = window.exampleVideoData;
   this.currentVideo = this.videos[0];
 
